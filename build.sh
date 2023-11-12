@@ -26,14 +26,11 @@ if [ "$1" == "build" ]; then
 
     configure_build
     if [ $? -eq 0 ]; then
-        make O=$PROJECT_DIR/build BR2_EXTERNAL=$PROJECT_DIR -C $BUILDROOT_DIR 
-        make -j8
+        make -j O=$PROJECT_DIR/build BR2_EXTERNAL=$PROJECT_DIR -C $BUILDROOT_DIR 
     else
         echo "No .config file found. Run ./build.sh menu to configure the build"
         exit 1
     fi
-    make O=$PROJECT_DIR BR2_EXTERNAL=$PROJECT_DIR  -C $BUILDROOT_DIR 
-    make -j8
 elif [ "$1" == "run" ]; then
     qemu-system-aarch64 -machine raspi3b -cpu cortex-a72 -nographic -dtb $BRI/bcm2710-rpi-3-b-plus.dtb -m 1G -smp 4 -kernel $BRI/Image -sd $BRI/sdcard.img \
     -append "rw earlyprintk loglevel=8 console=ttyAMA0,115200 dwc_otg.lpm_enable=0 root=/dev/mmcblk0p2 rootdelay=1"
