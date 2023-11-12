@@ -2,6 +2,9 @@
 
 build/
 host/
+target/
+images/
+
 .br2-external.*
 Makefile
 .config.old
