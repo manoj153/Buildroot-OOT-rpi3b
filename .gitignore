@@ -1,3 +1,8 @@
 
 
 build/
+host/
+.br2-external.*
+Makefile
+.config.old
+..config.tmp
